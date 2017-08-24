@@ -1,0 +1,92 @@
+/*Ellen Priscila Borges Oliveira RA 69554
+ * 
+ */
+package password_verifica;
+
+public class Security {
+		
+	
+	public Security() {
+		super();
+	}
+	
+	public static boolean confere_senha(String senha){
+		
+		
+		char c1, c2;
+		int i,cont=0;
+		boolean temp = true;
+		
+		if(senha == null)temp = false;
+		
+		//confere tamanho minimo e maximo
+		if(senha.length()<12)temp = false;
+		if(senha.length()>14)temp = false;
+		
+		
+		//temp = senha.matches(".*{12,14}");
+		//if(!temp)return false;
+	
+				
+				
+		//confere repeticao em sequencia
+		for(i = 0; i<senha.length()-1; i++){
+			c1 = senha.charAt(i);
+			c2 = senha.charAt(i+1);	
+			if(Character.toUpperCase(c1) == Character.toUpperCase(c2) )
+				temp =  false;	
+		}
+		
+		
+		
+		//confere maiuscula
+		cont = 0;
+		for(i = 0; i<senha.length(); i++){
+			c1 = senha.charAt(i);
+		
+			if(Character.isUpperCase(c1))
+				cont++;
+		}
+		if(cont==0)temp = false;
+
+		
+		
+		
+		//confere minuscula
+		cont = 0;
+		for(i = 0; i<senha.length(); i++){
+			c1 = senha.charAt(i);
+		
+			if(Character.isLowerCase(c1))
+				cont++;
+		}
+		if(cont==0)temp = false;
+
+		
+		
+		//confere digito
+		cont = 0;
+		for(i = 0; i<senha.length(); i++){
+			c1 = senha.charAt(i);
+		
+			if(Character.isDigit(c1))
+				cont++;
+		}
+		
+		if(cont==0)temp = false;
+		
+		//confere simbolos usando regex
+	
+		if(!senha.matches(".*[^a-zA-Z0-9].*"))
+			temp = false;
+		
+		
+		
+	
+	 return temp;
+	}
+	
+	
+
+
+}
