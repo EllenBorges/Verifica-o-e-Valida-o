@@ -1,0 +1,83 @@
+/*Ellen Priscila Borges Oliveira RA 69554
+ * 
+ */
+
+package password_verfica_testes;
+
+import static org.junit.Assert.*;
+
+
+import org.junit.Test;
+
+import password_verifica.Security;
+
+public class Security_teste {
+	
+
+
+	@Test
+	public void test_tamanho() {
+	
+		assertEquals(true,Security.confere_senha("Senhavalida12!"));
+		assertEquals(false,Security.confere_senha("Senhamuitogran@3"));
+		assertEquals(false,Security.confere_senha("Senha1"));
+	}
+	
+	
+	
+	
+	@Test
+	public void test_maiuscula() {
+	
+		assertEquals(false,Security.confere_senha("senhainval#d3"));
+		assertEquals(true,Security.confere_senha("7enhaehvali#A"));
+		assertEquals(true,Security.confere_senha("Senhaehvali#8"));
+		assertEquals(true,Security.confere_senha("senhaeHvali#9"));
+	}
+	
+	
+	
+	@Test
+	public void test_minuscula() {
+	
+		assertEquals(false,Security.confere_senha("SENHAINVALI$4"));
+		assertEquals(true,Security.confere_senha("SEN4EHVALID$a"));
+		assertEquals(true,Security.confere_senha("sENH4EHVALID$"));
+		assertEquals(true,Security.confere_senha("SENHAEhVALI$4"));
+	}
+	
+	
+	@Test
+	public void test_digito() {
+		assertEquals(false,Security.confere_senha("SENHAINVALI#a"));
+		assertEquals(true,Security.confere_senha("SENAEHVALI@a7"));
+		assertEquals(true,Security.confere_senha("2sENAEHVAL!DA"));
+		assertEquals(true,Security.confere_senha("SENAEh0VAL!DA"));
+	}
+	
+	
+	
+	@Test
+	public void test_simbolo() {
+		assertEquals(false,Security.confere_senha("SENHAINVAL1da"));
+		assertEquals(true,Security.confere_senha("SENHAEHVALa7@"));
+		assertEquals(true,Security.confere_senha("!2sENAEHVALID"));
+		assertEquals(true,Security.confere_senha("SENAEh0@VALID"));
+
+		
+		}
+	@Test
+	public void test_repeticao() {
+	
+		assertEquals(true,Security.confere_senha("Senhasemrep%1"));
+		assertEquals(false,Security.confere_senha("Senhacomr$7tt"));
+		assertEquals(false,Security.confere_senha("sSenhacomr$7t"));
+		assertEquals(false,Security.confere_senha("SenhacOOmr$7t"));
+		
+		
+	}
+	
+	
+	
+
+}
